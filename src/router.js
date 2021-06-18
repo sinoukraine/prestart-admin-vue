@@ -6,6 +6,8 @@ import Employees from './components/Employees.vue';
 import Faults from './components/Faults.vue';
 import Checklists from './components/Checklists.vue';
 import Groups from './components/Groups.vue';
+import Chat from './components/Chat.vue';
+import Dialog from './components/Dialog.vue';
 
 const routes = [
     {
@@ -42,6 +44,16 @@ const routes = [
         path: '/groups',
         name: 'groups',
         component: Groups,
+    },
+    {
+        path: '/chat',
+        name: 'chat',
+        component: Chat,
+    },
+    {
+        path: '/dialog',
+        name: 'dialog',
+        component: Dialog,
     },
     {
         path: '/formlayout',

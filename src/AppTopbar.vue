@@ -16,14 +16,16 @@
 		</div>
 		<div class="layout-topbar-icons inline-block">
 			
-			<span class="layout-topbar-search">
+			<!--<span class="layout-topbar-search">
 				<InputText type="text" placeholder="Search" />
 				<span class="layout-topbar-search-icon pi pi-search"></span>
-			</span>
-			<!--<button class="p-link">
-				<span class="layout-topbar-icon icon icon-profile-name mx-10"></span>
-			<span class="layout-topbar-item-text">User</span>
-			</button>-->
+			</span>-->
+			<button class="p-link">
+				<Button label="Admin" icon="icon icon-profile-name" :model="items" class="account-dropdown p-button-text p-mr-2 p-mb-2 p-button-md"></Button>
+		
+				<!--<span class="layout-topbar-icon icon icon-profile-name mx-10"></span>
+				<span class="layout-topbar-item-text">User</span>-->
+			</button>
 		</div>
 	</div>
 </template>
@@ -41,10 +43,11 @@ export default {
 			{label: 'Prestarts', icon: 'icon icon-menu-profile', to: '/'},
             {label: 'Trips', icon: 'icon icon-menu-trips', to: '/trips'},
             {label: 'Assets', icon: 'icon icon-other-asset', to: '/assets'},
-            {label: 'Employees', icon: 'icon icon-profile-name', to: '/employees'},
+            {label: 'Users', icon: 'icon icon-profile-name', to: '/employees'},
             {label: 'Faults', icon: 'icon icon-other-fail', to: '/faults'},
             {label: 'Checklists', icon: 'icon icon-other-checklist', to: '/checklists'},
             {label: 'Groups', icon: 'icon icon-other-passed-items', to: '/groups'},
+            {label: 'Messages', icon: 'icon icon-other-notes', to: '/chat'},
             
 		  ]
 	  	}

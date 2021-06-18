@@ -1,43 +1,58 @@
  <template>
 <div class="p-grid p-fluid prestarts">
+	<Dialog v-model:visible="isAddGroupModalOpened" class="m-dialog">
+		<template #header>
+			<h3>Add new group</h3>
+		</template>
+
+		<div class="p-grid">
+			<div class="p-col-12 p-md-12">
+				<div class="card p-fluid">
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12">
+							<label for="name2">Name</label>
+							<InputText id="name2" type="text" />
+						</div>
+						
+						<div class="p-field p-col-6">
+							<label for="email2">Assets</label>
+							<Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'Select asset'" class="" />
+						</div>						
+						<div class="p-field p-col-6">
+							<label for="email2">Checklists</label>
+							<Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'Select checklist'" class="" />
+						</div>
+						<div class="p-field p-col-12">
+							<label for="address">Notes</label>
+							<Textarea id="address" rows="4"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<template #footer class="align-left">
+			<Button label="Create new group" class="dark-btn mt-30 wl-100 p-button-md uppercase" autofocus />
+		</template>
+	</Dialog>
+	
+	
 	<form class="p-grid p-fluid w-form mb-15 mt-10" @submit.prevent="loadLazyData">        
-      <div class="p-col-12 p-sm-6 p-md-1 p-lg-2">
-        <label>Status</label>
-        <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All statuses'" class="" />
-      </div>
-	  <div class="p-col-12 p-sm-6 p-md-1 p-lg-2">
-        <label>Asset</label>
-        <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All assets'" class="" />
-      </div>
-	  <div class="p-col-12 p-sm-6 p-md-1 p-lg-2">
-        <label>User</label>
-        <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All users'" class="" />
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-2">
-        <label>From Date</label>
-        <div class="p-inputgroup">
-		  <Calendar placeholder="Select Date" :showIcon="true" :showButtonBar="true" v-model="calendarFromValue"></Calendar>
-        </div>
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-2">
-        <label>To Date</label>
-        <div class="p-inputgroup">
-          <Calendar placeholder="Select Date" :showIcon="true" :showButtonBar="true" v-model="calendarToValue"></Calendar>
-        </div>
-      </div>
-      <!--<div class="p-col-12 p-sm-6 p-md-3 p-lg-3" >
-        
-        <Dropdown v-model="selectedPeriod" :options="periods" optionLabel="name" optionValue="code" :placeholder="$t('TOP_USAGE_MSG004')" class="p-inputtext-sm"/>
-        
-      </div>-->
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-2" >
-        <!--<Dropdown v-model="selectedPeriod" :options="periods" optionLabel="name" optionValue="code" :placeholder="$t('TOP_USAGE_MSG004')" class="p-inputtext-sm"/>
-        -->
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
         <label>Search</label>
         <div class="p-inputgroup">
-          <InputText placeholder="Enter asset name..."/>
+          <InputText placeholder="Enter group name..."/>
           <Button icon="pi pi-search" class="p-button-warning bg-lightgrey"/>
         </div>
+      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">        
+        <Button class="dark-btn mt-30 wl-100"  @click="isAddGroupModalOpened=true" label="NEW GROUP"/>
+      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
+        
+      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3" >
+      
       </div>
     </form>
 
@@ -57,29 +72,14 @@
 				paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
 				:rowsPerPageOptions="[10,20,50]" responsiveLayout="scroll"
 				currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" >
-				<Column field="NUM" header="Number" :style="{'width':'80px'}">
-					<!--<template #header>
-						#
-					</template>
-					<template #body="slotProps">
-						<img :src="'assets/layout/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50" />
-					</template>-->
+				
+				<Column field="NAME" header="Name" :sortable="true" :style="{'width':'100px'}">
 				</Column>
-				<Column field="AS_NAME" header="Asset" :sortable="true" :style="{'width':'100px'}">
+                <Column field="AS_NAME" header="Assets" :sortable="true" :style="{'width':'100px'}">
 				</Column>
-				<Column field="IMEI" header="IMEI" :sortable="true" :style="{'width':'200px'}">
-					
+                <Column field="CHECKLIST" header="Checklists" :sortable="true" :style="{'width':'120px'}">
 				</Column>
-				<Column field="DRIVER" header="Users" :sortable="true" :style="{'width':'200px'}">
-					
-				</Column>
-				<Column field="FAILREASON" header="Fail Reason" :sortable="true" :style="{'width':'100px'}">
-					
-				</Column>
-				<Column field="QUESTION" header="Question" :sortable="true" :style="{'width':'300px'}">
-					
-				</Column>
-				<Column field="NOTES" header="Notes" :sortable="true" :style="{'width':'300px'}">
+				<Column field="NOTES" header="Notes" :sortable="true" :style="{'width':'500px'}">
 					<!--<template #EMPLOYEE>
 						View
 					</template>
@@ -88,16 +88,12 @@
                         <Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
 					</template>-->
 				</Column>
-				<Column field="PHOTO" :sortable="true" header="Photo"  :style="{'width':'100px'}">
-				</Column>
-				<Column field="STATUS" :sortable="true" header="Status"  :style="{'width':'200px'}">
-               
+				<Column field="INFO" :sortable="true" header="Info"  :style="{'width':'100px'}">
+                
 					<template #body>
-						<SplitButton label="Urgent" :model="items" class="p-button-danger p-mr-2 p-mb-2 p-button-sm"></SplitButton>
+						<SplitButton label="Options" :model="items" class="p-button-info p-mr-2 p-mb-2 p-button-sm"></SplitButton>
 		
 					</template>
-				</Column>
-				<Column field="DATE" :sortable="true" header="Date"  :style="{'width':'100px'}">
 				</Column>
 			</DataTable>
 		</div>
@@ -121,26 +117,20 @@ export default {
 		return {
             items: [
 					{
-						label: 'Urgent',
+						label: 'Edit',
 					},
 					{
-						label: 'Hight priority',
+						label: 'Copy',
 					},
 					{
-						label: 'Approved',
-					},
-					{
-						label: 'Completed',
-					},
-					{
-						label: 'No Status',
+						label: 'Delate',
 					},
 				],
+				
+			isAddGroupModalOpened: false,
 			isLoading: false,
 			data: [{'NUM':'P-2020',
 			'AS_NAME':'Volvo n12',
-			'IMEI':'05655454555234',
-				'DRIVER':'John',
 			'NAME':'for_volvo',
 			'CHECKLIST':'For_volvo',
 			'DIAGNOSTICS':'0',
@@ -173,8 +163,6 @@ export default {
 			{'NUM':'P-2019',
 			'NAME':'for_volvo',
 			'AS_NAME':'Volvo n12',
-			'IMEI':'05655454555234',
-				'DRIVER':'John',
 			'CHECKLIST':'For_volvo',
 			'DIAGNOSTICS':'0',
 			'EMPLOYEE':'Carl Nickson',
@@ -206,8 +194,6 @@ export default {
 			{'NUM':'P-2018',
 			'NAME':'for_volvo',
 			'AS_NAME':'DAF 45G',
-			'IMEI':'05655454555234',
-				'DRIVER':'John',
 			'CHECKLIST':'DAF',
 			'DIAGNOSTICS':'0',
 			'EMPLOYEE':'Alex Nickson',

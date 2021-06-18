@@ -1,43 +1,58 @@
  <template>
 <div class="p-grid p-fluid prestarts">
+	<Dialog v-model:visible="isAddGroupModalOpened" class="m-dialog">
+		<template #header>
+			<h3>Add new group</h3>
+		</template>
+
+		<div class="p-grid">
+			<div class="p-col-12 p-md-12">
+				<div class="card p-fluid">
+					<div class="p-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12">
+							<label for="name2">Name</label>
+							<InputText id="name2" type="text" />
+						</div>
+						
+						<div class="p-field p-col-6">
+							<label for="email2">Assets</label>
+							<Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'Select asset'" class="" />
+						</div>						
+						<div class="p-field p-col-6">
+							<label for="email2">Checklists</label>
+							<Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'Select checklist'" class="" />
+						</div>
+						<div class="p-field p-col-12">
+							<label for="address">Notes</label>
+							<Textarea id="address" rows="4"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<template #footer class="align-left">
+			<Button label="Create new group" class="dark-btn mt-30 wl-100 p-button-md uppercase" autofocus />
+		</template>
+	</Dialog>
+	
+	
 	<form class="p-grid p-fluid w-form mb-15 mt-10" @submit.prevent="loadLazyData">        
-      <div class="p-col-12 p-sm-6 p-md-1 p-lg-2">
-        <label>Status</label>
-        <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All statuses'" class="" />
-      </div>
-	  <div class="p-col-12 p-sm-6 p-md-1 p-lg-2">
-        <label>Asset</label>
-        <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All assets'" class="" />
-      </div>
-	  <div class="p-col-12 p-sm-6 p-md-1 p-lg-2">
-        <label>User</label>
-        <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All users'" class="" />
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-2">
-        <label>From Date</label>
-        <div class="p-inputgroup">
-		  <Calendar placeholder="Select Date" :showIcon="true" :showButtonBar="true" v-model="calendarFromValue"></Calendar>
-        </div>
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-2">
-        <label>To Date</label>
-        <div class="p-inputgroup">
-          <Calendar placeholder="Select Date" :showIcon="true" :showButtonBar="true" v-model="calendarToValue"></Calendar>
-        </div>
-      </div>
-      <!--<div class="p-col-12 p-sm-6 p-md-3 p-lg-3" >
-        
-        <Dropdown v-model="selectedPeriod" :options="periods" optionLabel="name" optionValue="code" :placeholder="$t('TOP_USAGE_MSG004')" class="p-inputtext-sm"/>
-        
-      </div>-->
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-2" >
-        <!--<Dropdown v-model="selectedPeriod" :options="periods" optionLabel="name" optionValue="code" :placeholder="$t('TOP_USAGE_MSG004')" class="p-inputtext-sm"/>
-        -->
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
         <label>Search</label>
         <div class="p-inputgroup">
-          <InputText placeholder="Enter asset name..."/>
+          <InputText placeholder="Enter checklist name..."/>
           <Button icon="pi pi-search" class="p-button-warning bg-lightgrey"/>
         </div>
+      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">        
+        <Button class="dark-btn mt-30 wl-100"  @click="newMessage" label="NEW MESSAGE"/>
+      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
+        
+      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3" >
+      
       </div>
     </form>
 
@@ -46,7 +61,7 @@
 			<DataTable 
 				ref="dt"
 				:value="data" 
-				class="p-datatable-customers p-datatable-sm p-datatable-striped p-datatable-bordered" 
+				class="p-datatable-customers p-datatable-sm p-datatable-striped p-datatable-bordered chat-table" 
 				showGridlines
 				:rows="10" 
 				style="margin-bottom: 20px" 
@@ -54,50 +69,55 @@
 				:lazy="true"				
 				scrollDirection="both"
 				:loading="isLoading"
+                :rowHover="true" 
 				paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
 				:rowsPerPageOptions="[10,20,50]" responsiveLayout="scroll"
 				currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" >
-				<Column field="NUM" header="Number" :style="{'width':'80px'}">
-					<!--<template #header>
-						#
+				
+				<Column field="THEME" header="Theme" :sortable="true"   :style="{'width':'100px'}">
+					<template #body="{data}" >
+                        <div class="message-block" @click="newMessage" >
+                            <span class="p-column-title">Theme</span>
+                            <span :class="'read-' + data.READ">{{data.THEME}}</span>
+                        </div>
 					</template>
-					<template #body="slotProps">
-						<img :src="'assets/layout/images/product/' + slotProps.data.image" :alt="slotProps.data.image" width="50" />
-					</template>-->
 				</Column>
-				<Column field="AS_NAME" header="Asset" :sortable="true" :style="{'width':'100px'}">
+                <Column field="STATE" header="State" :sortable="true" :style="{'width':'100px'}">
+                <template #body="{data}" >
+                    <span class="p-column-title">Status</span>
+                    <span  @click="newMessage" :class="'customer-badge status-' + data.STATE">{{data.STATE}}</span>
+                </template>
 				</Column>
-				<Column field="IMEI" header="IMEI" :sortable="true" :style="{'width':'200px'}">
-					
+                <Column field="USER" header="User" :sortable="true" :style="{'width':'120px'}">
+					<template #body="{data}">
+                        <div class="message-block"  @click="newMessage">
+                            <span class="p-column-title">User</span>
+                            <span  :class="'read-' + data.READ">{{data.USER}}</span>
+                        </div>
+					</template>
 				</Column>
-				<Column field="DRIVER" header="Users" :sortable="true" :style="{'width':'200px'}">
-					
-				</Column>
-				<Column field="FAILREASON" header="Fail Reason" :sortable="true" :style="{'width':'100px'}">
-					
-				</Column>
-				<Column field="QUESTION" header="Question" :sortable="true" :style="{'width':'300px'}">
-					
-				</Column>
-				<Column field="NOTES" header="Notes" :sortable="true" :style="{'width':'300px'}">
+				<Column field="MESSAGE" header="Message" :sortable="true" :style="{'width':'300px', 
+  'white-space': 'nowrap', 
+  'overflow': 'hidden',
+  'text-overflow': 'ellipsis'}">
 					<!--<template #EMPLOYEE>
 						View
-					</template>
-					<template #body>
-                        <Button icon="pi pi-search" type="button" class="p-button-success p-mr-2 p-mb-1"></Button>
-                        <Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
 					</template>-->
-				</Column>
-				<Column field="PHOTO" :sortable="true" header="Photo"  :style="{'width':'100px'}">
-				</Column>
-				<Column field="STATUS" :sortable="true" header="Status"  :style="{'width':'200px'}">
-               
-					<template #body>
-						<SplitButton label="Urgent" :model="items" class="p-button-danger p-mr-2 p-mb-2 p-button-sm"></SplitButton>
-		
+					<template #body="{data}">
+                        <div  @click="newMessage" class="message-block">
+                            <span class="p-column-title">Message</span>
+                            <span :class="'read-' + data.READ">{{data.MESSAGE}}</span>
+                        </div>
 					</template>
 				</Column>
 				<Column field="DATE" :sortable="true" header="Date"  :style="{'width':'100px'}">
+                    
+					<template #body="{data}">
+                        <div  @click="newMessage" class="message-block">
+                            <span class="p-column-title">Date</span>
+                            <span :class="'read-' + data.READ">{{data.DATE}}</span>
+                        </div>
+					</template>
 				</Column>
 			</DataTable>
 		</div>
@@ -121,27 +141,24 @@ export default {
 		return {
             items: [
 					{
-						label: 'Urgent',
+						label: 'Edit',
 					},
 					{
-						label: 'Hight priority',
+						label: 'Copy',
 					},
 					{
-						label: 'Approved',
-					},
-					{
-						label: 'Completed',
-					},
-					{
-						label: 'No Status',
+						label: 'Delate',
 					},
 				],
+				
+			isAddGroupModalOpened: false,
 			isLoading: false,
-			data: [{'NUM':'P-2020',
-			'AS_NAME':'Volvo n12',
-			'IMEI':'05655454555234',
-				'DRIVER':'John',
-			'NAME':'for_volvo',
+            data: [{
+                'READ':'no',
+                'THEME':'New work',
+            'STATE':'Received',
+			'USER':'John',
+			'MESSAGE':'Lorem ipsum dolor sit amet, consectetur adipiscing elit exercitation ... ',
 			'CHECKLIST':'For_volvo',
 			'DIAGNOSTICS':'0',
 			'EMPLOYEE':'Jack Nickson',
@@ -170,11 +187,11 @@ export default {
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
 			'DATE':'06/10/2020 12:12:40'},
-			{'NUM':'P-2019',
-			'NAME':'for_volvo',
-			'AS_NAME':'Volvo n12',
-			'IMEI':'05655454555234',
-				'DRIVER':'John',
+			{
+                'READ':'no','THEME':'New work',
+            'STATE':'Viewed',
+			'USER':'Ben',
+			'MESSAGE':'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...',
 			'CHECKLIST':'For_volvo',
 			'DIAGNOSTICS':'0',
 			'EMPLOYEE':'Carl Nickson',
@@ -203,17 +220,88 @@ export default {
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
 			'DATE':'06/10/2020 12:12:40'},
-			{'NUM':'P-2018',
+			{
+                'READ':'yes','THEME':'New work',
+            'STATE':'Delivered',
+			'USER':'John',
+			'MESSAGE':'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...',
+			'NUM':'P-2018',
 			'NAME':'for_volvo',
 			'AS_NAME':'DAF 45G',
-			'IMEI':'05655454555234',
-				'DRIVER':'John',
 			'CHECKLIST':'DAF',
 			'DIAGNOSTICS':'0',
 			'EMPLOYEE':'Alex Nickson',
 			'ROLE':'driver',
 			'TYPE':'Monthly',
 			
+			'FAILREASON':'Not working',
+			'QUESTION':'Visually check chassis, suspension including air bags, check cab & body for damage',
+			'NOTES':'Sed ut perspiciatis unde omnis iste natus error eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.',
+			'PHOTO':'View photo',
+			'NUMBER':'E - 17',
+			'FIRSTNAME':'Mark',
+			'SURNAME':'Radford',
+			'MOBILE':'+3040034445',
+			'PHONE':'199122',
+			'EMAIL':'mr@mail.com',
+			'REGISTRATION':'TD61PF',
+			'MAKE':'Volvo',
+			'MODEL':'FH',
+			'COLOR':'White',
+			'YEAR':'2005',
+			'GROUPS':'AUSTRALIA',
+			'INFO':'Edit details',
+			'MILEAGE':'2.567km',
+			'HOURS':'4d 3h',
+			'MAXSPEED':'67 km/h',
+			'AVERAGESPEED':'37 km/h',
+			'FUELUSED':'45 L',
+            'DATE':'06/10/2020 12:12:40'},{
+                
+                'READ':'yes',
+            'THEME':'New work',
+            'STATE':'Submitted',
+			'USER':'John',
+			'MESSAGE':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do exercitation ... ',
+			'CHECKLIST':'For_volvo',
+			'DIAGNOSTICS':'0',
+			'EMPLOYEE':'Jack Nickson',
+			'ROLE':'driver',
+			'TYPE':'Daily',
+			'FAILREASON':'Not working',
+			'QUESTION':'Visually check chassis, suspension including air bags, check cab & body for damage',
+			'NOTES':'Sed ut perspiciatis unde omnis iste natus error eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.',
+			'PHOTO':'View photo',
+			'NUMBER':'E - 17',
+			'FIRSTNAME':'Mark',
+			'SURNAME':'Radford',
+			'MOBILE':'+3040034445',
+			'PHONE':'199122',
+			'EMAIL':'mr@mail.com',
+			'REGISTRATION':'TD61PF',
+			'MAKE':'Volvo',
+			'MODEL':'FH',
+			'COLOR':'White',
+			'YEAR':'2005',
+			'GROUPS':'AUSTRALIA',
+			'INFO':'Edit details',
+			'MILEAGE':'2.567km',
+			'HOURS':'4d 3h',
+			'MAXSPEED':'67 km/h',
+			'AVERAGESPEED':'37 km/h',
+			'FUELUSED':'45 L',
+            'DATE':'06/10/2020 12:12:40'},{
+                
+                'READ':'yes',
+            'THEME':'New work',
+            'STATE':'Received',
+			'USER':'John',
+			'MESSAGE':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ... ',
+			'CHECKLIST':'For_volvo',
+			'DIAGNOSTICS':'0',
+			'EMPLOYEE':'Jack Nickson',
+			'ROLE':'driver',
+			'TYPE':'Daily',
 			'FAILREASON':'Not working',
 			'QUESTION':'Visually check chassis, suspension including air bags, check cab & body for damage',
 			'NOTES':'Sed ut perspiciatis unde omnis iste natus error eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.',
@@ -307,6 +395,9 @@ export default {
         }
 	},
 	methods: {
+        newMessage(){
+            this.$router.push({ path: `/dialog` })
+        },
 		async loadLazyData() {
 			this.isLoading = true;
 			//let params = {

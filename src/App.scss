@@ -362,6 +362,64 @@ label{
 .login-form .p-button{
     border: none !important;
 }
+
+.account-dropdown{
+  margin:-7px 0 0 0;
+}
+.account-dropdown:hover{
+  color: #ffffff !important;
+}
+
+.customer-badge{
+  border-radius: 2px;
+  padding: .25em .5rem;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .3px;
+}
+.status-Received{
+  background: #ffcdd2;
+  color: #c63737;
+}
+.status-Viewed{
+  background: #b3e5fc;
+  color: #23547b;
+}
+.status-Submitted{
+  background: #ffd8b2;
+  color: #805b36;
+}
+.status-Delivered{
+  background: #c8e6c9;
+color: #256029;
+}
+.read-no{
+  font-weight: 600;
+}
+
+.chat-table td{
+  overflow: hidden;
+  cursor: pointer;
+}
+.p-toolbar-group-left, .p-toolbar-group-right{
+  width: 100%;
+}
+.messages{
+  height: 45vh;
+}
+.p-toolbar-group-left{
+  height: 100%;
+}
+
+.message .message-bubble{
+  border: 1px solid #e3e3e3;
+}
+.message-sent .message-bubble{
+  border: none;
+}
+.sms-page .p-toolbar{
+  background: #ffffff;
+}
   @media (max-width:991px){
     .p-tabmenu{
         display: none;

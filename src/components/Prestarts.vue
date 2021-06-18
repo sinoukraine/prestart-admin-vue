@@ -76,16 +76,11 @@
 				<Column field="EMPLOYEE" header="Employee" :sortable="true" :style="{'width':'300px'}">
 					
 				</Column>
-				<Column field="ROLE" header="Role" :sortable="true" :style="{'width':'200px'}">
-					<!--<template #EMPLOYEE>
-						View
-					</template>
-					<template #body>
-                        <Button icon="pi pi-search" type="button" class="p-button-success p-mr-2 p-mb-1"></Button>
-                        <Button icon="pi pi-times" type="button" class="p-button-danger p-mb-1"></Button>
-					</template>-->
+				<Column field="PHOTO" header="Photo" :sortable="true" :style="{'width':'200px'}">
 				</Column>
-				<Column field="TYPE" :sortable="true" header="Type"  :style="{'width':'200px'}">
+				<Column field="TRIPTYPE" header="Trip Type" :sortable="true" :style="{'width':'200px'}">
+				</Column>
+				<Column field="TYPE" :sortable="true" header="Period Type"  :style="{'width':'200px'}">
 				</Column>
 				<Column field="DATE" :sortable="true" header="Date"  :style="{'width':'200px'}">
 				</Column>
@@ -110,7 +105,9 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			data: [{'NUM':'P-2020',
+			data: [{
+				'TRIPTYPE': 'TEST',
+				'NUM':'P-2020',
 			'AS_NAME':'Volvo n12',
 			'NAME':'for_volvo',
 			'CHECKLIST':'For_volvo',
@@ -141,7 +138,8 @@ export default {
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
 			'DATE':'06/10/2020 12:12:40'},
-			{'NUM':'P-2019',
+			{
+				'TRIPTYPE': 'TEST','NUM':'P-2019',
 			'NAME':'for_volvo',
 			'AS_NAME':'Volvo n12',
 			'CHECKLIST':'For_volvo',
@@ -172,7 +170,8 @@ export default {
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
 			'DATE':'06/10/2020 12:12:40'},
-			{'NUM':'P-2018',
+			{
+				'TRIPTYPE': 'TEST','NUM':'P-2018',
 			'NAME':'for_volvo',
 			'AS_NAME':'DAF 45G',
 			'CHECKLIST':'DAF',

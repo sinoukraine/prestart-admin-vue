@@ -59,13 +59,16 @@
 				</Column>
 				<Column field="AS_NAME" header="Assets" :sortable="true" :style="{'width':'200px'}">
 				</Column>
-				<Column field="EMPLOYEE" header="Employee" :sortable="true" :style="{'width':'200px'}">
+				<Column field="IMEI" header="IMEI" :sortable="true" :style="{'width':'200px'}">
 					
 				</Column>
-				<Column field="MILEAGE" header="Mileage" :sortable="true" :style="{'width':'100px'}">
+				<Column field="DRIVER" header="Users" :sortable="true" :style="{'width':'200px'}">
 					
 				</Column>
-				<Column field="HOURS" header="Hours" :sortable="true" :style="{'width':'100px'}">
+				<Column field="MILEAGE" header="Distance" :sortable="true" :style="{'width':'100px'}">
+					
+				</Column>
+				<Column field="HOURS" header="Time" :sortable="true" :style="{'width':'100px'}">
 					<!--<template #EMPLOYEE>
 						View
 					</template>
@@ -97,7 +100,9 @@
 						<router-link to="/trips">Playback</router-link>
 					</template>
 				</Column>
-				<Column field="DATE" :sortable="true" header="End Date"  :style="{'width':'200px'}">
+				<Column field="STARTTIME" :sortable="true" header="Start Time"  :style="{'width':'200px'}">
+				</Column>
+				<Column field="ENDTIME" :sortable="true" header="End Time"  :style="{'width':'200px'}">
 				</Column>
 			</DataTable>
 		</div>
@@ -124,7 +129,13 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			data: [{'NUM':'P-2020',
+			data: [{
+				
+				'STARTTIME': '06/10/2020 12:12:40',
+				'ENDTIME': '07/10/2020 12:12:40',
+				'IMEI':'05655454555234',
+				'DRIVER':'John',
+				'NUM':'P-2020',
 			'AS_NAME':'Volvo n12',
 			'NAME':'for_volvo',
 			'CHECKLIST':'For_volvo',
@@ -155,7 +166,12 @@ export default {
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
 			'DATE':'06/10/2020 12:12:40'},
-			{'NUM':'P-2019',
+			{
+				
+				'STARTTIME': '06/10/2020 12:12:40',
+				'ENDTIME': '07/10/2020 12:12:40',
+				'IMEI':'05655454555234',
+				'DRIVER':'John','NUM':'P-2019',
 			'NAME':'for_volvo',
 			'AS_NAME':'Volvo n12',
 			'CHECKLIST':'For_volvo',
@@ -186,7 +202,12 @@ export default {
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
 			'DATE':'06/10/2020 12:12:40'},
-			{'NUM':'P-2018',
+			{
+				
+				'STARTTIME': '06/10/2020 12:12:40',
+				'ENDTIME': '07/10/2020 12:12:40',
+				'IMEI':'05655454555234',
+				'DRIVER':'John','NUM':'P-2018',
 			'NAME':'for_volvo',
 			'AS_NAME':'DAF 45G',
 			'CHECKLIST':'DAF',

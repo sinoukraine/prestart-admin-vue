@@ -154,15 +154,11 @@
 					
 				</Column>
 				
-				<Column field="PHONE" header="Phone" :sortable="true" :style="{'width':'300px'}">
-					
-				</Column>
+				
 				<Column field="EMAIL" header="E-mail" :sortable="true" :style="{'width':'300px'}">
 					
 				</Column>
-				<Column field="ROLE" header="Role" :sortable="true" :style="{'width':'300px'}">
-					
-				</Column>
+				
 				<Column field="RATING" :sortable="true" :style="{'width':'300px'}">
 					<template #header>
 						<span>Rating</span>

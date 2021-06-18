@@ -158,6 +158,10 @@
 				
 				<Column field="AS_NAME" header="Assets" :sortable="true" :style="{'width':'300px'}">
 				</Column>
+				
+				<Column field="IMEI" header="IMEI" :sortable="true" :style="{'width':'100px'}">
+					
+				</Column>
 				<Column field="REGISTRATION" header="Registration" :sortable="true" :style="{'width':'300px'}">
 					
 				</Column>
@@ -180,10 +184,7 @@
 				<Column field="CHECKLIST" header="Checklists" :sortable="true" :style="{'width':'300px'}">
 					
 				</Column>
-				<Column field="IMEI" header="IMEI" :sortable="true" :style="{'width':'100px'}">
-					
-				</Column>
-				<Column field="DEVICE" header="Device" :sortable="true" :style="{'width':'100px'}">
+				<Column field="DEVICE" header="Device Type" :sortable="true" :style="{'width':'100px'}">
 					
 				</Column>
 				<Column field="INFO" :style="{'width':'160px'}">
