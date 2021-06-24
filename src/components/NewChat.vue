@@ -14,12 +14,12 @@
       <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
         <label>User</label>
         <div class="p-inputgroup">
-          <Dropdown disabled v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'Select user'" class="" />
+          <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'Select user'" class="" />
         </div>
       </div>
       <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">        
         <label>Theme</label>
-				<InputText id="name2" disabled type="text" value="New work" placeholder="Enter theme"/>
+				<InputText id="name2" type="text" value="" placeholder="Enter theme"/>
       </div>
     </form>
 
@@ -105,61 +105,7 @@ export default {
 		return {
             messageList: [
                 
-                {
-                    new: false,
-                    timestamp: '4 Feb 00:55:12',
-                    from: 'me',
-                    to: 'John',
-                    text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-                    type: 'sent',
-                    status: 'Delivered'
-                }
-                ,
-                {
-                    new: false,
-                    timestamp: '4 Feb 00:55:12',
-                    from: 'John',
-                    to: 'me',
-                    text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-                    type: 'reseived',
-                    status: 'Viewed'
-                }, {
-                    new: false,
-                    timestamp: '4 Feb 00:55:12',
-                    from: 'me',
-                    to: 'John',
-                    text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-                    type: 'sent',
-                    status: 'Submitted'
-                }
-                ,
-                {
-                    new: false,
-                    timestamp: '4 Feb 00:55:12',
-                    from: 'John',
-                    to: 'me',
-                    text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-                    type: 'reseived',
-                    status: 'Received'
-                }, {
-                    new: false,
-                    timestamp: '4 Feb 00:55:12',
-                    from: 'me',
-                    to: 'John',
-                    text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-                    type: 'sent',
-                    status: 'Pending...'
-                }
-                ,
-                {
-                    new: true,
-                    timestamp: '4 Feb 00:55:12',
-                    from: 'John',
-                    to: 'me',
-                    text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-                    type: 'reseived',
-                    status: 'Received'
-                }
+                
             ],
             items: [
 					{
@@ -794,18 +740,11 @@ export default {
     }
   }
 
- .sms-page .messages .message .message-content .message-footer, .sms-page .messages .message .message-content .message-header {
-    line-height: 1;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.51);
-  padding: 5px;
-}
-
   .sms-page .message-status-new{
-  line-height: 1;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.51);
   padding: 5px;
+    color: rgb(48,48,48);
+    line-height: 1.144;
+    font-size: 14px;
 }
 
 	@media screen and (max-width: 960px) {

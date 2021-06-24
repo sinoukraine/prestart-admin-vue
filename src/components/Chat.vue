@@ -37,23 +37,17 @@
 	</Dialog>
 	
 	
-	<form class="p-grid p-fluid w-form mb-15 mt-10" @submit.prevent="loadLazyData">        
+	<form class="p-grid p-fluid w-form mb-15 mt-10 p-justify-end" @submit.prevent="loadLazyData">        
       <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
         <label>Search</label>
         <div class="p-inputgroup">
-          <InputText placeholder="Enter checklist name..."/>
+          <InputText placeholder="Enter theme"/>
           <Button icon="pi pi-search" class="p-button-warning bg-lightgrey"/>
         </div>
       </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">        
-        <Button class="dark-btn mt-30 wl-100"  @click="newMessage" label="NEW MESSAGE"/>
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
-        
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3" >
-      
-      </div>
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3 p-col-fixed" style="width:200px">        
+        <Button class="orange-btn mt-30 wl-100"  @click="newMessage" label="NEW MESSAGE"/>
+      </div>      
     </form>
 
     <div class="card margin-bottom overflow-visible no-padding w-form my-20">    
@@ -70,13 +64,14 @@
 				scrollDirection="both"
 				:loading="isLoading"
                 :rowHover="true" 
+				@row-click="showMessage"
 				paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
 				:rowsPerPageOptions="[10,20,50]" responsiveLayout="scroll"
 				currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" >
 				
 				<Column field="THEME" header="Theme" :sortable="true"   :style="{'width':'100px'}">
 					<template #body="{data}" >
-                        <div class="message-block" @click="newMessage" >
+                        <div class="message-block" >
                             <span class="p-column-title">Theme</span>
                             <span :class="'read-' + data.READ">{{data.THEME}}</span>
                         </div>
@@ -85,12 +80,12 @@
                 <Column field="STATE" header="State" :sortable="true" :style="{'width':'100px'}">
                 <template #body="{data}" >
                     <span class="p-column-title">Status</span>
-                    <span  @click="newMessage" :class="'customer-badge status-' + data.STATE">{{data.STATE}}</span>
+                    <div   :class="'customer-badge status-' + data.STATE">{{data.STATE}}</div>
                 </template>
 				</Column>
                 <Column field="USER" header="User" :sortable="true" :style="{'width':'120px'}">
 					<template #body="{data}">
-                        <div class="message-block"  @click="newMessage">
+                        <div class="message-block" >
                             <span class="p-column-title">User</span>
                             <span  :class="'read-' + data.READ">{{data.USER}}</span>
                         </div>
@@ -104,7 +99,7 @@
 						View
 					</template>-->
 					<template #body="{data}">
-                        <div  @click="newMessage" class="message-block">
+                        <div   class="message-block">
                             <span class="p-column-title">Message</span>
                             <span :class="'read-' + data.READ">{{data.MESSAGE}}</span>
                         </div>
@@ -113,7 +108,7 @@
 				<Column field="DATE" :sortable="true" header="Date"  :style="{'width':'100px'}">
                     
 					<template #body="{data}">
-                        <div  @click="newMessage" class="message-block">
+                        <div  class="message-block">
                             <span class="p-column-title">Date</span>
                             <span :class="'read-' + data.READ">{{data.DATE}}</span>
                         </div>
@@ -396,6 +391,9 @@ export default {
 	},
 	methods: {
         newMessage(){
+            this.$router.push({ path: `/new-chat` })
+        },
+        showMessage(){
             this.$router.push({ path: `/dialog` })
         },
 		async loadLazyData() {

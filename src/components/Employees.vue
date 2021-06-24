@@ -108,6 +108,9 @@
         <label>Roles</label>
         <Dropdown v-model="selectedChecklist" :options="checklists" optionLabel="name" optionValue="code" :placeholder="'All roles'" class="" />
       </div>
+      <div class="p-col" >
+		
+      </div>
       <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
         <label>Search</label>
         <div class="p-inputgroup">
@@ -115,11 +118,8 @@
           <Button icon="pi pi-search" class="p-button-warning bg-lightgrey"/>
         </div>
       </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">        
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3 p-col-fixed" style="width:200px">        
         <Button class="dark-btn mt-30 wl-100"  @click="isAddEmployeeModalOpened=true" label="NEW EMPLOYEE"/>
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3 align-right" >
-		
       </div>
     </form>
 

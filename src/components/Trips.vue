@@ -83,12 +83,12 @@
 				</Column>
 				<Column field="FUELUSED" :sortable="true" header="Fuel"  :style="{'width':'100px'}">
 				</Column>
-				<Column field="TRIPRATING" :style="{'width':'260px'}">
+				<Column field="TRIPRATING" :style="{'min-width':'150px'}">
 					<template #header>
 						<span>Trip Rating</span>
                     </template>
 					<template #body>
-						<Rating modelValue="5" :stars="5"  :cancel="false"/>
+						<div style="width:120px !important"><Rating modelValue="5" :stars="5"  :cancel="false"/></div>
 					</template>
 				</Column>
                 

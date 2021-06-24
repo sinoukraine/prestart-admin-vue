@@ -258,7 +258,27 @@ label{
   .dark-btn:hover{
     background-color: rgba(48, 48, 48, 0.9) !important;
     border-color: rgba(48, 48, 48, 0.9) !important;
+  }  
+  .green-btn{
+    border-radius: 5px;
+    background-color: rgb(58, 170, 53);
+    font-weight: 500;
+    color: #ffffff;
+  }    
+  .green-btn:hover{
+    background-color: rgba(58, 170, 53, 0.9) !important;
+    border-color: rgba(58, 170, 53, 0.9) !important;
   }   
+  .orange-btn{
+    border-radius: 5px;
+    background-color: rgb(243, 145, 0);
+    font-weight: 500;
+    color: #ffffff;
+  }    
+  .orange-btn:hover{
+    background-color: rgba(243, 145, 0, 0.9) !important;
+    border-color: rgba(243, 145, 0, 0.9) !important;
+  }  
   .white-btn{
     border-radius: 5px;
     color: rgb(48, 48, 48);
@@ -271,6 +291,14 @@ label{
     color: rgb(48, 48, 48) !important;
   }  
 
+  .p-dropdown-trigger{
+    color: #ababab !important;
+    border-left: 1px solid rgb(232,232,232) !important;   
+    background: rgb(240,240,240) !important;
+  }
+  .p-dropdown-trigger:hover{    
+    opacity: 0.9;
+  }
   .align-right{
       text-align: right;
   }
@@ -364,18 +392,20 @@ label{
 }
 
 .account-dropdown{
-  margin:-7px 0 0 0;
+  margin:-13px 0 0 0;
 }
 .account-dropdown:hover{
   color: #ffffff !important;
 }
 
 .customer-badge{
+  height: 25px;
   border-radius: 2px;
-  padding: .25em .5rem;
-  font-weight: 700;
+  padding: .30em 1rem;
+  font-weight: 600;
   font-size: 12px;
   letter-spacing: .3px;
+  text-align: center;
 }
 .status-Received{
   background: #ffcdd2;
@@ -420,6 +450,69 @@ color: #256029;
 .sms-page .p-toolbar{
   background: #ffffff;
 }
+
+.dialog-chat-card{
+  position: absolute;
+  width: calc(100% - 43px);
+  height: calc(100vh - 193px);
+  bottom: 0px;
+}
+
+.dialog-chat-input-block{
+  background-color: #ffffff;
+  z-index: 10;
+  width: calc(100% - 25px);
+  display:block;
+  position: absolute;
+  bottom: 2px;
+}
+
+.p-inputtext{
+  height: 45px;
+  padding: 1px 5px 5px 12px;
+}
+
+.p-dropdown-label{
+  height: 43px;
+  padding: 10px 5px 5px 12px !important;
+}
+//
+.p-paginator .p-dropdown-label{
+  padding: 5px 5px 5px 12px !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: rgb(240,240,240);
+  border-color: rgb(232,232,232);
+}
+.p-splitbutton{
+  width: 120px;
+  height: 30px;
+  font-weight: 500 !important;
+}
+.p-splitbutton .p-button{
+  height: 30px;
+}
+
+.p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.p-menuitem-link{
+  border-radius: 0px !important;
+}
+
+.p-button{
+  height: 45px;
+  padding: 4px 5px 5px 5px;
+  font-weight: 650;
+}
+
+@media (max-width:575px){
+  .dialog-chat-card{
+    height: calc(100vh - 273px);
+  }
+}
+
   @media (max-width:991px){
     .p-tabmenu{
         display: none;

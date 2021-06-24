@@ -7,6 +7,7 @@ import Faults from './components/Faults.vue';
 import Checklists from './components/Checklists.vue';
 import Groups from './components/Groups.vue';
 import Chat from './components/Chat.vue';
+import NewChat from './components/NewChat.vue';
 import Dialog from './components/Dialog.vue';
 
 const routes = [
@@ -49,6 +50,11 @@ const routes = [
         path: '/chat',
         name: 'chat',
         component: Chat,
+    },
+    {
+        path: '/new-chat',
+        name: 'new-chat',
+        component: NewChat,
     },
     {
         path: '/dialog',

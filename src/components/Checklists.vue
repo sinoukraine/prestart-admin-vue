@@ -36,7 +36,7 @@
 		</template>
 	</Dialog>
 	
-	<form class="p-grid p-fluid w-form mb-15 mt-10" @submit.prevent="loadLazyData">        
+	<form class="p-grid p-fluid w-form mb-15 mt-10 p-justify-end" @submit.prevent="loadLazyData">        
       <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
         <label>Search</label>
         <div class="p-inputgroup">
@@ -44,15 +44,10 @@
           <Button icon="pi pi-search" class="p-button-warning bg-lightgrey"/>
         </div>
       </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">        
+      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3 p-col-fixed" style="width:200px">        
         <Button class="dark-btn mt-30 wl-100" @click="isAddChecklistModalOpened=true" label="NEW CHECKLIST"/>
       </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3">
-        
-      </div>
-      <div class="p-col-12 p-sm-6 p-md-3 p-lg-3" >
       
-      </div>
     </form>
 
     <div class="card margin-bottom overflow-visible no-padding w-form my-20">    
