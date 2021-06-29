@@ -357,8 +357,9 @@ label{
 .p-sidebar.login{
     height: 100vh !important;
     background-color: rgb(48, 48, 48);
-    background: url(http://android.app.quiktrak.eu/prestart-admin/resources/images/bg.jpg) no-repeat center center;
+    background: url(http://android.app.quiktrak.eu/prestart/images/bg.png) no-repeat top;
     background-size: cover;
+    height: 100%!important;
 }
 
 .p-sidebar.login .p-sidebar-close{

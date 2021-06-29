@@ -25,7 +25,7 @@
         <Sidebar v-model:visible="showLogin" class="login" :baseZIndex="1000" position="bottom">
             <div class="layout-profile">
                 <div>
-                    <img class="logo_big" src="http://android.app.quiktrak.eu/prestart-admin/resources/images/logo_big.png" alt="">
+                    <img class="logo_big" src="http://android.app.quiktrak.eu/prestart/static/images/logo.png" alt="">
 				</div>
 					<div class="login-form p-fluid p-formgrid p-grid align-left">
 						<div class="p-field p-col-12">

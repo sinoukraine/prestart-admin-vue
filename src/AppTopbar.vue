@@ -3,7 +3,7 @@
 		<div class="inline-block mt--13">
 			<div class="inline-block vertical-align-middle m--10">
 				<router-link to="/">
-					<img class="logo" src="http://android.app.quiktrak.eu/prestart-admin/resources/images/logo_big.png" alt="">
+					<img class="logo" src="http://android.app.quiktrak.eu/prestart/static/images/logo.png" alt="">
 				</router-link>
 			</div>			
 			<div class="inline-block overflow-hidden" :style="media">
