@@ -158,15 +158,15 @@
     border-color:rgb(232,232,232);
   }
   .p-dropdown{
-    border-radius: 10px;
+    border-radius: 7px;
   }
   .p-inputgroup .p-inputtext{ 
-    border-top-left-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
+    border-top-left-radius: 7px !important;
+    border-bottom-left-radius: 7px !important;
   }
   .p-inputgroup .p-button{ 
-    border-top-right-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
+    border-top-right-radius: 7px !important;
+    border-bottom-right-radius: 7px !important;
   }
   .p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
     border-top-right-radius: 0px;
@@ -194,7 +194,7 @@
 
 
   .p-datatable-scrollable .p-datatable-wrapper, .p-card{
-      border-radius: 10px;
+      border-radius: 7px;
   }
 
   .p-datatable-wrapper table tr:first-child th{
@@ -219,33 +219,33 @@
   }
 
   .p-datatable-wrapper tr:first-child th:first-child {
-    border-top-left-radius: 10px;
+    border-top-left-radius: 7px;
   }
 
     .p-datatable-wrapper tr:first-child th:last-child {
-        border-top-right-radius: 10px;
+        border-top-right-radius: 7px;
     }
 
     .p-datatable-wrapper tr:last-child td:first-child {
-        border-bottom-left-radius: 10px;
+        border-bottom-left-radius: 7px;
     }
 
     .p-datatable-wrapper tr:last-child td:last-child {
-        border-bottom-right-radius: 10px;
+        border-bottom-right-radius: 7px;
     }
 
 .p-panel .p-panel-header{
-  border-top-left-radius: 10px; 
-  border-top-right-radius: 10px;
+  border-top-left-radius: 7px; 
+  border-top-right-radius: 7px;
 }
 
 .p-panel .p-panel-content{  
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 
 .p-datatable-wrapper{
-    border-radius: 10px;
+    border-radius: 7px;
     border: 1px solid rgb(232,232,232);
 }
 
@@ -280,7 +280,7 @@ label{
   }
 
   .dark-btn{
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: rgb(48, 48, 48);
     font-weight: 500;
     color: #ffffff;
@@ -290,7 +290,7 @@ label{
     border-color: rgba(48, 48, 48, 0.9) !important;
   }  
   .green-btn{
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: rgb(58, 170, 53);
     font-weight: 500;
     color: #ffffff;
@@ -300,7 +300,7 @@ label{
     border-color: rgba(58, 170, 53, 0.9) !important;
   }   
   .orange-btn{
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: rgb(243, 145, 0);
     font-weight: 500;
     color: #ffffff;
@@ -310,7 +310,7 @@ label{
     border-color: rgba(243, 145, 0, 0.9) !important;
   }  
   .white-btn{
-    border-radius: 10px;
+    border-radius: 7px;
     color: rgb(48, 48, 48);
     font-weight: 500;
     background-color: #ffffff;
@@ -339,7 +339,7 @@ label{
     color: #3aaa35 !important;
 }
 .p-button{
-    border-radius: 10px;
+    border-radius: 7px;
 }
 .p-button-sm{
     height: 32px;
@@ -409,7 +409,7 @@ label{
 }
 .login-form .p-inputtext{
     border: 0px solid #CCCCCC;
-    border-radius: 10px;
+    border-radius: 7px;
     /* color: #000 !important; */
     padding-left: 16px;
     padding-right: 40px;
@@ -525,8 +525,8 @@ color: #256029;
 }
 
 .p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 .p-menuitem-link{
   border-radius: 0px !important;
@@ -591,11 +591,11 @@ color: #256029;
 }
 
 .dashboard .card{
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .dashboard .count{
-  border-radius: 10px !important;
+  border-radius: 7px !important;
   background-color: #fff !important;
   padding: 5px auto !important;
 }
