@@ -9,10 +9,22 @@ import Groups from './components/Groups.vue';
 import Chat from './components/Chat.vue';
 import NewChat from './components/NewChat.vue';
 import Dialog from './components/Dialog.vue';
+import Profile from './components/Profile.vue';
+import Dashboard from './components/Dashboard.vue';
 
 const routes = [
     {
+        path: '/profile',
+        name: 'profile',
+        component: Profile,
+    },
+    {
         path: '/',
+        name: 'dashboard',
+        component: Dashboard,
+    },
+    {
+        path: '/prestarts',
         name: 'prestarts',
         component: Prestarts,
     },

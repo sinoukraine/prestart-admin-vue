@@ -1,7 +1,9 @@
 <template>
 	<div :class="containerClass" @click="onWrapperClick">
-		<AppTopBar @menu-toggle="onMenuToggle" v-show="!showLogin" />
+		<AppTopBar :info="info" @menu-toggle="onMenuToggle" v-show="!showLogin" />
 
+		<Toast />
+        
         <transition name="layout-sidebar">
             <div :class="sidebarClass" @click="onSidebarClick" v-show="false"> <!--removed isSidebarVisible()-->
                 <div class="layout-logo">
@@ -11,15 +13,14 @@
                 </div>
 
                 <AppProfile />
-                <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
+                <AppMenu  :info="userInfo" :model="menu" @menuitem-click="onMenuItemClick" />
             </div>
         </transition>
 
 		<div class="layout-main">
-			<router-view v-show="!showLogin"/>
+			<router-view :info="userInfo" v-show="!showLogin"/>
 		</div>
 
-		
 		<AppFooter />
 
         <Sidebar v-model:visible="showLogin" class="login" :baseZIndex="1000" position="bottom">
@@ -27,24 +28,23 @@
                 <div>
                     <img class="logo_big" src="http://android.app.quiktrak.eu/prestart/static/images/logo.png" alt="">
 				</div>
-					<div class="login-form p-fluid p-formgrid p-grid align-left">
-						<div class="p-field p-col-12">
-							<label for="name2" class="text-color-white">Login Name</label>
-							<InputText id="name2" v-model="login"  type="text" />
-						</div>
-						<div class="p-field p-col-12">
-							<label for="email2"  class="text-color-white">Password</label>
-							<InputText id="email2" v-model="password" type="password" />
-						</div>
-                        <div class="p-field p-col-6">
-							<Button label="Registration" class="white-btn mt-30 w-100 p-button-lg uppercase"/>
-						</div>
-						<div class="p-field p-col-6 align-right">
-							<Button label="Login"  @click="login=='admin'&&password=='888888'?showLogin=false:showLogin=true" class="p-button-danger mt-30 w-100 p-button-lg uppercase"/>
-						</div>
-					</div>                  
-                    
-                
+                <div class="login-form p-fluid p-formgrid p-grid align-left">
+                    <div class="p-field p-col-12">
+                        <label for="username" class="text-color-white">Login Name</label>
+                        <InputText id="username" v-model="loginForm.username"  type="text" placeholder="Enter Login/E-mail"/>
+                    </div>
+                    <div class="p-field p-col-12">
+                        <label for="password"  class="text-color-white">Password</label>
+                        <InputText id="password" v-model="loginForm.password" type="password" placeholder="Enter Password"/>
+                    </div>
+                    <div class="p-field p-col-6">
+                        <Button label="Registration" class="white-btn mt-30 w-100 p-button-lg uppercase"/>
+                    </div>
+                    <div class="p-field p-col-6 align-right">
+                        <Button label="Login"  @click="onLogin" class="p-button-danger mt-30 w-100 p-button-lg uppercase"/>
+                        
+                    </div>
+                </div>
             </div>
         </Sidebar>
 	</div>
@@ -55,119 +55,50 @@ import AppTopBar from './AppTopbar.vue';
 import AppProfile from './AppProfile.vue';
 import AppMenu from './AppMenu.vue';
 import AppFooter from './AppFooter.vue';
+import { login } from '@/api/user'
 
 export default {
     data() {
         return {
-            login: 'admin',
-            password: '888888',
+            loginForm: {
+                /*Account: !localStorage.Account ? '' : localStorage.Account,
+                Password: !localStorage.Password ? '' : localStorage.Password,
+                AppID: 'com.quiktrak.new.web',
+                PushToken: '',
+                SystemType: PlatformTypes[detectNavigatorAgentType()]*/
+                username: !localStorage.Account ? '' : localStorage.Account,
+                password: !localStorage.Password ? '' : localStorage.Password,
+                AppKey: '924365a6-eadd-3742-ed83-7d55f37b0503',
+                MobileToken: '832f2ce8-8864-5228-8648-1b1cb95d826e',
+                DeviceToken: '832f2ce8-8864-5228-8648-1b1cb95d826e',
+                DeviceType: 'android.app.quiktrak.eu.prestart'
+            },
+            userInfo: {},
             showLogin: true,
             layoutMode: 'overlay',
-            layoutColorMode: 'dark',
-            staticMenuInactive: false,
-            overlayMenuActive: false,
-            mobileMenuActive: false,
-            menu : [
-                {label: 'Prestarts', icon: 'pi pi-fw pi-home', to: '/'},
-				{
-					label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
-					items: [
-						{label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
-						{label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
-                        {label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel"},
-                        {label: "Invalid State", icon: "pi pi-fw pi-exclamation-circle", to: "invalidstate"},
-						{label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button'},
-						{label: 'Table', icon: 'pi pi-fw pi-table', to: '/table'},
-						{label: 'List', icon: 'pi pi-fw pi-list', to: '/list'},
-						{label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/tree'},
-						{label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/panel'},
-						{label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/overlay'},
-						{label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/menu'},
-						{label: 'Message', icon: 'pi pi-fw pi-comment', to: '/messages'},
-						{label: 'File', icon: 'pi pi-fw pi-file', to: '/file'},
-						{label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/chart'},
-						{label: 'Misc', icon: 'pi pi-fw pi-circle-off', to: '/misc'},
-					]
-				},
-				{
-					label: "Utilities", icon:'pi pi-fw pi-globe',
-					items: [
-						{label: 'Display', icon:'pi pi-fw pi-desktop', to:'/display'},
-						{label: 'Elevation', icon:'pi pi-fw pi-external-link', to:'/elevation'},
-						{label: 'Flexbox', icon:'pi pi-fw pi-directions', to:'/flexbox'},
-						{label: 'Icons', icon:'pi pi-fw pi-search', to:'/icons'},
-						{label: 'Grid System', icon:'pi pi-fw pi-th-large', to:'/grid'},
-						{label: 'Spacing', icon:'pi pi-fw pi-arrow-right', to:'/spacing'},
-						{label: 'Typography', icon:'pi pi-fw pi-align-center', to:'/typography'},
-						{label: 'Text', icon:'pi pi-fw pi-pencil', to:'/text'},
-					]
-				},
-				{
-					label: 'Pages', icon: 'pi pi-fw pi-clone',
-					items: [
-						{label: 'Crud', icon: 'pi pi-fw pi-user-edit', to: '/crud'},
-						{label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar'},
-						{label: 'Timeline', icon: 'pi pi-fw pi-calendar', to: '/timeline'},
-						{label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', to: '/empty'}
-					]
-				},
-                {
-                    label: 'Menu Hierarchy', icon: 'pi pi-fw pi-search',
-                    items: [
-                        {
-                            label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
-                            items: [
-                                {
-                                    label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
-                                    items: [
-                                        {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark'},
-                                        {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark'},
-                                        {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark'},
-                                    ]
-                                },
-                                {
-                                    label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
-                                    items: [
-                                        {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark'},
-                                        {label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-bookmark'}
-                                    ]
-                                },
-                            ]
-                        },
-                        {
-                            label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
-                            items: [
-                                {
-                                    label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
-                                    items: [
-                                        {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark'},
-                                        {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark'},
-                                        {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-bookmark'},
-                                    ]
-                                },
-                                {
-                                    label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
-                                    items: [
-                                        {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark'},
-                                        {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-bookmark'}
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {label: 'Documentation', icon: 'pi pi-fw pi-question', command: () => {window.location = "#/documentation"}},
-                {label: 'View Source', icon: 'pi pi-fw pi-search', command: () => {window.location = "https://github.com/primefaces/sigma-vue"}}
-            ]
         }
     },
     watch: {
         $route() {
             this.menuActive = false;
-            this.$toast.removeAllGroups();
+            //this.$toast.removeAllGroups();
         }
     },
     methods: {
+        async onLogin() {
+            //this.loading = true
+            let response = await login(this.loginForm)
+            //this.loading = false
+            if(!response){
+                this.$toast.add({severity:'error', summary: 'Error Message', detail:'Something happened', life: 3000});
+                return
+            }
+            console.log('rsp', response)
+            this.showLogin = false
+            this.userInfo = response
+            localStorage.Account = this.loginForm.username;
+            localStorage.Password = this.loginForm.password;
+        },
         onWrapperClick() {
             if (!this.menuClick) {
                 this.overlayMenuActive = false;

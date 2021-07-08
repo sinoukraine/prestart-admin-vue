@@ -211,6 +211,7 @@ import Tooltip from 'primevue/tooltip';
 import Dialog from "primevue/dialog";
 
 export default {
+	props: ['info'],
 	components: {
 		Dialog
 	},
@@ -222,7 +223,7 @@ export default {
 			isAddAssetModalOpened: false,
 			isEditAssetModalOpened: false,
 			isLoading: false,
-			data: [{
+			data: [/*{
 				'IMEI':'05655454555234',
 				'DEVICE':'QT',
 				'NUM':'P-2020',
@@ -322,7 +323,7 @@ export default {
 			'MAXSPEED':'67 km/h',
 			'AVERAGESPEED':'37 km/h',
 			'FUELUSED':'45 L',
-			'DATE':'06/10/2020 12:12:40'},],
+			'DATE':'06/10/2020 12:12:40'},*/],
 			calendarFromValue: null,
 			calendarToValue: null,
 			selectedChecklist: 'data',
@@ -377,6 +378,43 @@ export default {
 	productService: null,
 	eventService: null,
 	created() {
+		console.log('as', this.$props.info.Devices[0])
+		this.$props.info.Devices.forEach(element => {
+			this.data.push({
+				'IMEI':element.IMEI,
+				'DEVICE':'QT',
+				'NUM':'P-2020',
+			'AS_NAME':'Volvo n12',
+			'NAME':element.Name,
+			'CHECKLIST':'For_volvo',
+			'DIAGNOSTICS':'0',
+			'EMPLOYEE':'Jack Nickson',
+			'ROLE':'driver',
+			'TYPE':'Daily',
+			'FAILREASON':'Not working',
+			'QUESTION':'Visually check chassis, suspension including air bags, check cab & body for damage',
+			'NOTES':'Sed ut perspiciatis unde omnis iste natus error eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.',
+			'PHOTO':'View photo',
+			'NUMBER':'E - 17',
+			'FIRSTNAME':'Mark',
+			'SURNAME':'Radford',
+			'MOBILE':'+3040034445',
+			'PHONE':'199122',
+			'EMAIL':'mr@mail.com',
+			'REGISTRATION':'TD61PF',
+			'MAKE':'Volvo',
+			'MODEL':'FH',
+			'COLOR':'White',
+			'YEAR':'2005',
+			'GROUPS':'AUSTRALIA',
+			'INFO':'Edit details',
+			'MILEAGE':'2.567km',
+			'HOURS':'4d 3h',
+			'MAXSPEED':'67 km/h',
+			'AVERAGESPEED':'37 km/h',
+			'FUELUSED':'45 L',
+			'DATE':'06/10/2020 12:12:40'})
+		});
 		this.productService = new ProductService();
 		this.eventService = new EventService();
 	},

@@ -21,8 +21,9 @@
 				<span class="layout-topbar-search-icon pi pi-search"></span>
 			</span>-->
 			<button class="p-link">
-				<Button label="Admin" icon="icon icon-profile-name" :model="items" class="account-dropdown p-button-text p-mr-2 p-mb-2 p-button-md"></Button>
-		
+				<!--<Button label="Admin" icon="icon icon-profile-name" :model="items" class="account-dropdown p-button-text p-mr-2 p-mb-2 p-button-md"></Button>-->
+				<Menu ref="menu" :model="overlayMenuItems" :popup="true" />
+				<Button type="button" label="Admin" icon="icon icon-profile-name" @click="toggleMenu" style="width: auto"/>
 				<!--<span class="layout-topbar-icon icon icon-profile-name mx-10"></span>
 				<span class="layout-topbar-item-text">User</span>-->
 			</button>
@@ -34,13 +35,28 @@
 import TabMenu from 'primevue/tabmenu'
 
 export default {
+	props: ['info'],
 	components: {
 	  TabMenu
 	},
 	data(){
       return {
+		overlayMenuItems: [
+			{
+				label: 'Profile',
+				//icon: 'pi pi-save'
+				to: '/profile'
+			},
+			{
+				label: 'Exit',
+				//icon: 'pi pi-refresh'
+			},
+			/*{
+				separator: true
+			},*/
+		],
 		navItems: [
-			{label: 'Prestarts', icon: 'icon icon-menu-profile', to: '/'},
+			{label: 'Prestarts', icon: 'icon icon-menu-profile', to: '/prestarts'},
             {label: 'Trips', icon: 'icon icon-menu-trips', to: '/trips'},
             {label: 'Assets', icon: 'icon icon-other-asset', to: '/assets'},
             {label: 'Users', icon: 'icon icon-profile-name', to: '/employees'},
@@ -53,13 +69,15 @@ export default {
 	  	}
 	},
     methods: {
+		toggleMenu(event) {
+			this.$refs.menu.toggle(event);
+		},
         onMenuToggle(event) {
             this.$emit('menu-toggle', event);
         }
 	},
 	computed:{
 		media(){
-			console.log(window.innerWidth)
 			if(window.screen.width<880){
 				return 'display:none';
 			}else{

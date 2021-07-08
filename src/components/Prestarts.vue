@@ -46,7 +46,7 @@
 				:lazy="true"				
 				scrollDirection="both"
 				:loading="isLoading"
-				paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+				paginatorTemplate="CurrentPageReport RowsPerPageDropdown FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
 				:rowsPerPageOptions="[10,20,50]" responsiveLayout="scroll"
 				currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" >
 				<Column field="NUMBER" header="#" :style="{'width':'180px'}">

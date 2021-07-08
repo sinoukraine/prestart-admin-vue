@@ -34,6 +34,14 @@
     padding: 0;
 }
 
+.p-0{
+  padding: 0;
+}
+
+.px-7{
+  padding-left: 7px;
+  padding-right: 7px;
+}
 .my-15{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -150,15 +158,15 @@
     border-color:rgb(232,232,232);
   }
   .p-dropdown{
-    border-radius: 5px;
+    border-radius: 10px;
   }
   .p-inputgroup .p-inputtext{ 
-    border-top-left-radius: 5px !important;
-    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
   }
   .p-inputgroup .p-button{ 
-    border-top-right-radius: 5px !important;
-    border-bottom-right-radius: 5px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
   }
   .p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
     border-top-right-radius: 0px;
@@ -186,7 +194,7 @@
 
 
   .p-datatable-scrollable .p-datatable-wrapper, .p-card{
-      border-radius: 7px;
+      border-radius: 10px;
   }
 
   .p-datatable-wrapper table tr:first-child th{
@@ -211,25 +219,47 @@
   }
 
   .p-datatable-wrapper tr:first-child th:first-child {
-    border-top-left-radius: 5px;
+    border-top-left-radius: 10px;
   }
 
     .p-datatable-wrapper tr:first-child th:last-child {
-        border-top-right-radius: 5px;
+        border-top-right-radius: 10px;
     }
 
     .p-datatable-wrapper tr:last-child td:first-child {
-        border-bottom-left-radius: 5px;
+        border-bottom-left-radius: 10px;
     }
 
     .p-datatable-wrapper tr:last-child td:last-child {
-        border-bottom-right-radius: 5px;
+        border-bottom-right-radius: 10px;
     }
+
+.p-panel .p-panel-header{
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
+}
+
+.p-panel .p-panel-content{  
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 .p-datatable-wrapper{
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid rgb(232,232,232);
 }
 
+.p-datatable{
+  margin-bottom: 0 !important;
+}
+
+.dashboard .p-pie canvas{
+  height: 118px !important;
+  width: 237px !important;
+}
+.dashboard .p-panel .p-panel-content {
+  padding-bottom: 18px !important;
+}
 label{
     font-weight: 600;
     color: rgb(55,55,55);
@@ -250,7 +280,7 @@ label{
   }
 
   .dark-btn{
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(48, 48, 48);
     font-weight: 500;
     color: #ffffff;
@@ -260,7 +290,7 @@ label{
     border-color: rgba(48, 48, 48, 0.9) !important;
   }  
   .green-btn{
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(58, 170, 53);
     font-weight: 500;
     color: #ffffff;
@@ -270,7 +300,7 @@ label{
     border-color: rgba(58, 170, 53, 0.9) !important;
   }   
   .orange-btn{
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgb(243, 145, 0);
     font-weight: 500;
     color: #ffffff;
@@ -280,7 +310,7 @@ label{
     border-color: rgba(243, 145, 0, 0.9) !important;
   }  
   .white-btn{
-    border-radius: 5px;
+    border-radius: 10px;
     color: rgb(48, 48, 48);
     font-weight: 500;
     background-color: #ffffff;
@@ -302,14 +332,14 @@ label{
   .align-right{
       text-align: right;
   }
- /* .p-rating .p-rating-icon.pi-star {
+  .p-rating .p-rating-icon.pi-star {
     color: #3aaa35;
 }
 .p-rating .p-rating-icon.pi-star:hover {
-    color: #3aaa35;
-}*/
+    color: #3aaa35 !important;
+}
 .p-button{
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .p-button-sm{
     height: 32px;
@@ -357,7 +387,7 @@ label{
 .p-sidebar.login{
     height: 100vh !important;
     background-color: rgb(48, 48, 48);
-    background: url(http://android.app.quiktrak.eu/prestart/images/bg.png) no-repeat top;
+    background: url(https://android.app.quiktrak.eu/__prestart/resources/images/bg.png) no-repeat top;
     background-size: cover;
     height: 100%!important;
 }
@@ -379,7 +409,7 @@ label{
 }
 .login-form .p-inputtext{
     border: 0px solid #CCCCCC;
-    border-radius: 4px;
+    border-radius: 10px;
     /* color: #000 !important; */
     padding-left: 16px;
     padding-right: 40px;
@@ -401,7 +431,7 @@ label{
 
 .customer-badge{
   height: 25px;
-  border-radius: 2px;
+  border-radius: 5px;
   padding: .30em 1rem;
   font-weight: 600;
   font-size: 12px;
@@ -495,8 +525,8 @@ color: #256029;
 }
 
 .p-inputgroup-addon:last-child, .p-inputgroup button:last-child, .p-inputgroup input:last-child, .p-inputgroup > .p-inputwrapper:last-child, .p-inputgroup > .p-inputwrapper:last-child > .p-inputtext {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .p-menuitem-link{
   border-radius: 0px !important;
@@ -506,6 +536,97 @@ color: #256029;
   height: 45px;
   padding: 4px 5px 5px 5px;
   font-weight: 650;
+}
+
+.login-form .p-inputtext{
+  padding: 5px 15px 5px 15px;
+}
+
+.layout-topbar .layout-topbar-icons button  {
+  background: none !important;
+  border-radius: 0px;
+  border: none !important;
+  box-shadow: none !important;
+  height: 50px;  
+}
+.layout-topbar .layout-topbar-icons button:hover  {
+  color: #ffffff !important;
+}
+
+.layout-topbar .layout-topbar-icons {
+  height: 50px;
+  margin-top: -15px;
+}
+
+
+.profile-page #fileInput {
+  display: none;
+}
+.p-toast {
+  z-index: 10000 !important;
+}
+
+.bg-color-green{
+  background-color: rgb(58,170,53);
+}
+
+.bg-color-orange{
+  background-color: rgb(242,145,0);
+}
+
+.bg-color-red{
+  background-color: rgb(227,15,19);
+}
+
+.dashboard .bg-color-red .count{
+  color: rgb(227,15,19);
+}
+
+.dashboard .bg-color-orange .count{
+  color: rgb(242,145,0);
+}
+
+.dashboard .bg-color-green .count{
+  color: rgb(58,170,53);
+}
+
+.dashboard .card{
+  border-radius: 10px;
+}
+
+.dashboard .count{
+  border-radius: 10px !important;
+  background-color: #fff !important;
+  padding: 5px auto !important;
+}
+.dashboard .card .title {
+  color: #fff;
+}
+.dashboard .card .detail {
+  color: #fff;
+}
+
+.p-panel .p-panel-header{
+  border-bottom: 0px;
+  background-color: #ffffff;
+}
+div.square {
+  border-radius: 2px;
+  width: 14px;
+  height: 14px;
+}
+
+.p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td {
+  height: 52px;
+}
+
+.p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+  height: 50px;
+}
+
+.p-calendar .p-inputtext {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
 
 @media (max-width:575px){
